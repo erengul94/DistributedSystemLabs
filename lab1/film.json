@@ -1,44 +1,37 @@
 {   
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id":"/film_test.json",
+    "$id":"film_test.json",
     "type":"object",
     "properties":{
         "id": {"type": "integer"},
         "title": {"type":"string"},
-        "owner": {"type":"integer"}, // burasi user'i point edecek
+        "owner": {"type":"integer"}, 
         "private": {"type":"boolean"},
-        "watchDate": {"type":"string"},
-        "rating": {"type": "integer"},
-        "favorite": {"type": "boolean"}
+        "watchDate": {"type":"string", "format": "date"},
+        "rating": {"type": "integer", "minimum": 0, "maximum": 30},
+        "favorite": {"type": "boolean", "default": false}
 
 
     },
     "required": ["id", "title", "owner", "private"],
     "dependencies": {
-        "watchDate": {"properties": {"private":{"type":"integer", ""}}}
-    }
+        "watchDate": {
+            "properties": {
+                "private":{"enum": [true]}
+            }
+        },
+        "rating": {
+            "properties": {
+                "private":{"enum": [true]}
+            }
+        },
+        "favorite": {
+            "properties": {
+                "private":{"enum": [true]}
+            }
+        }
+    }    
 }
 
 
-A film data structure is made of the following fields:
-▪ id: unique identifier of the film data structure in the Film manager service
-(mandatory); +
-▪ title: textual title of the film (mandatory); +
-▪ owner: the id of the film data structure owner, i.e., the user who created it
-(mandatory);+
-=======================================
-▪ private: a mandatory Boolean property, set to true if the film data structure is
-marked as private, false if it is public (default value: true). A film data structure is
-said private if only its owner can access it, public if every user can access it;
 
-▪ watchDate: the date when the film was watched by the owner, expressed in the
-YYYY-MM-DD format (YYYY is the year, MM is the month, DD is the day). This
-property can be included in the film data structure only if private is true;
-
-▪ rating: a non-negative integer number (maximum 10) expressing the rating the
-owner has given to the film. This property can be included in the film data structure
-only if private is true;
-
-▪ favorite: a Boolean property, set to true if that film is among the favourite ones of
-the user, false otherwise (default value: false). This property can be included in the
-film data structure only if private is true.
