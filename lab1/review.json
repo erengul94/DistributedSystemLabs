@@ -1,0 +1,37 @@
+
+{   
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id":"film_test.json",
+    "type":"object",
+    "properties":{
+        "filmId": {"type": "integer"},
+        "reviewerId": {"type":"string"},
+        "completed": {"type":"boolean", "default":false},
+        "reviewDate": {"type":"string", "format": "date"},
+        "rating": {"type": "integer", "minimum": 0, "maximum": 10},
+        "review": {"type": "string", "maximum": 1000}
+
+
+    },
+    "required": ["filmId", "reviewerId", "completed", "private", "review"],
+    "dependencies": {
+        "reviewDate": {
+            "properties": {
+                "completed":{"enum": [true]}
+            }
+        },
+        "rating": {
+            "properties": {
+                "completed":{"enum": [true]}
+            }
+        },
+        "review": {
+            "properties": {
+                "completed":{"enum": [true]}
+            }
+        }
+    }    
+}
+
+
+
