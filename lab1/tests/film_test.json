@@ -1,4 +1,10 @@
 {   
-    "$schema": "/lab1/film.json"
-    "name":"eren"
+    "$schema": "../film.json",
+    "id": 1,
+    "title": "Starwars",
+    "owner": 1,
+    "private": true,
+    "rating": 0,
+    "favorite": false
 }
+
