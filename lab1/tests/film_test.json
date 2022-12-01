@@ -1,4 +1,4 @@
-{
-    "id":"ad",
-    
+{   
+    "$schema": "/lab1/film.json"
+    "name":"eren"
 }
